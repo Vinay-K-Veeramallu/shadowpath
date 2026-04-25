@@ -1,6 +1,6 @@
 "use client";
 
-import { useId, useMemo } from "react";
+import { useId, useMemo, useState, useEffect } from "react";
 import type { TimeSlotHour } from "../lib/timeSlots";
 import { TIME_SLOT_HOURS, TIME_SLOT_LABELS } from "../lib/timeSlots";
 
@@ -9,14 +9,64 @@ interface ShadeSliderProps {
   onChange: (value: TimeSlotHour) => void;
 }
 
-function hourToIndex(h: TimeSlotHour): number {
-  return TIME_SLOT_HOURS.indexOf(h);
+/** Minutes from 6 AM (start) to 8 PM (end) */
+const START_HOUR = 6;
+const END_HOUR = 20;
+const TOTAL_MINUTES = (END_HOUR - START_HOUR) * 60; // 840
+const STEP = 5;
+
+/** Convert minutes-from-6AM to a display string like "6:00 AM", "2:35 PM" */
+function minutesToLabel(mins: number): string {
+  const totalHour = START_HOUR + Math.floor(mins / 60);
+  const minute = mins % 60;
+  const h12 = totalHour % 12 === 0 ? 12 : totalHour % 12;
+  const ampm = totalHour < 12 ? "AM" : "PM";
+  return `${h12}:${minute.toString().padStart(2, "0")} ${ampm}`;
+}
+
+/** Snap minutes-from-6AM to the nearest TimeSlotHour */
+function snapToSlot(mins: number): TimeSlotHour {
+  const decimalHour = START_HOUR + mins / 60;
+  let best: TimeSlotHour = TIME_SLOT_HOURS[0];
+  let bestD = Infinity;
+  for (const s of TIME_SLOT_HOURS) {
+    const d = Math.abs(decimalHour - s);
+    if (d < bestD) {
+      bestD = d;
+      best = s;
+    }
+  }
+  return best;
+}
+
+/** Convert a TimeSlotHour to minutes-from-6AM */
+function slotToMinutes(slot: TimeSlotHour): number {
+  return (slot - START_HOUR) * 60;
+}
+
+/** Get emoji for time of day based on hour */
+function timeEmoji(mins: number): string {
+  const hour = START_HOUR + mins / 60;
+  if (hour < 10) return "🌅";
+  if (hour < 16) return "☀️";
+  return "🌆";
 }
 
 export function ShadeSlider({ value, onChange }: ShadeSliderProps) {
   const id = useId();
-  const idx = hourToIndex(value);
-  const maxIdx = TIME_SLOT_HOURS.length - 1;
+  const [minutes, setMinutes] = useState(() => slotToMinutes(value));
+
+  // Sync internal minutes when the external value changes
+  useEffect(() => {
+    const slotMins = slotToMinutes(value);
+    // Only reset if the current minutes don't already snap to this slot
+    if (snapToSlot(minutes) !== value) {
+      setMinutes(slotMins);
+    }
+  }, [value]);
+
+  const displayLabel = minutesToLabel(minutes);
+  const snappedSlot = snapToSlot(minutes);
 
   const gradientStyle = useMemo(
     () => ({
@@ -26,28 +76,36 @@ export function ShadeSlider({ value, onChange }: ShadeSliderProps) {
     []
   );
 
-  function setFromIndex(i: number) {
-    const clamped = Math.max(0, Math.min(maxIdx, i));
-    onChange(TIME_SLOT_HOURS[clamped]);
+  function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
+    const newMins = Number.parseInt(e.target.value, 10);
+    setMinutes(newMins);
+    const slot = snapToSlot(newMins);
+    if (slot !== value) {
+      onChange(slot);
+    }
   }
 
-  function onRangeChange(e: React.ChangeEvent<HTMLInputElement>) {
-    setFromIndex(Number.parseInt(e.target.value, 10));
-  }
-
-  function onRangeKeyDown(e: React.KeyboardEvent<HTMLInputElement>) {
+  function handleKeyDown(e: React.KeyboardEvent<HTMLInputElement>) {
     if (e.key === "ArrowRight") {
       e.preventDefault();
-      setFromIndex(idx >= maxIdx ? 0 : idx + 1);
+      const next = Math.min(TOTAL_MINUTES, minutes + STEP);
+      setMinutes(next);
+      const slot = snapToSlot(next);
+      if (slot !== value) onChange(slot);
     } else if (e.key === "ArrowLeft") {
       e.preventDefault();
-      setFromIndex(idx <= 0 ? maxIdx : idx - 1);
+      const prev = Math.max(0, minutes - STEP);
+      setMinutes(prev);
+      const slot = snapToSlot(prev);
+      if (slot !== value) onChange(slot);
     } else if (e.key === "Home") {
       e.preventDefault();
-      setFromIndex(0);
+      setMinutes(0);
+      onChange(TIME_SLOT_HOURS[0]);
     } else if (e.key === "End") {
       e.preventDefault();
-      setFromIndex(maxIdx);
+      setMinutes(TOTAL_MINUTES);
+      onChange(TIME_SLOT_HOURS[TIME_SLOT_HOURS.length - 1]);
     }
   }
 
@@ -63,14 +121,14 @@ export function ShadeSlider({ value, onChange }: ShadeSliderProps) {
             aria-live="polite"
           >
             <span className="text-base leading-none" aria-hidden>
-              {idx <= 2 ? "🌅" : idx <= 5 ? "☀️" : "🌆"}
+              {timeEmoji(minutes)}
             </span>
-            {TIME_SLOT_LABELS[value]}
+            {displayLabel}
           </span>
         </div>
 
         <label htmlFor={`${id}-range`} className="sr-only">
-          Select time of day in two-hour steps from 6 AM to 8 PM
+          Select time of day in five-minute steps from 6 AM to 8 PM
         </label>
 
         <div className="relative pt-2 pb-1">
@@ -85,16 +143,16 @@ export function ShadeSlider({ value, onChange }: ShadeSliderProps) {
             id={`${id}-range`}
             type="range"
             min={0}
-            max={maxIdx}
-            step={1}
-            value={idx}
-            onChange={onRangeChange}
-            onKeyDown={onRangeKeyDown}
-            aria-label={`Time of day, ${TIME_SLOT_LABELS[value]}`}
-            aria-valuemin={TIME_SLOT_HOURS[0]}
-            aria-valuemax={TIME_SLOT_HOURS[maxIdx]}
-            aria-valuenow={value}
-            aria-valuetext={TIME_SLOT_LABELS[value]}
+            max={TOTAL_MINUTES}
+            step={STEP}
+            value={minutes}
+            onChange={handleChange}
+            onKeyDown={handleKeyDown}
+            aria-label={`Time of day, ${displayLabel}`}
+            aria-valuemin={START_HOUR}
+            aria-valuemax={END_HOUR}
+            aria-valuenow={START_HOUR + minutes / 60}
+            aria-valuetext={displayLabel}
             aria-describedby={`${id}-label`}
             className="relative z-10 h-10 w-full cursor-pointer appearance-none bg-transparent sp-ring-focus rounded-lg
               [&::-webkit-slider-runnable-track]:h-3 [&::-webkit-slider-runnable-track]:rounded-full [&::-webkit-slider-runnable-track]:bg-transparent
@@ -115,12 +173,15 @@ export function ShadeSlider({ value, onChange }: ShadeSliderProps) {
         className="flex flex-wrap justify-center gap-1.5 sm:gap-2"
       >
         {TIME_SLOT_HOURS.map((stop) => {
-          const active = stop === value;
+          const active = stop === snappedSlot;
           return (
             <button
               key={stop}
               type="button"
-              onClick={() => onChange(stop)}
+              onClick={() => {
+                setMinutes(slotToMinutes(stop));
+                onChange(stop);
+              }}
               aria-pressed={active}
               className={`min-w-[3.25rem] rounded-xl px-2.5 py-2 text-xs font-semibold transition-all duration-150 sp-ring-focus sm:text-sm ${
                 active
