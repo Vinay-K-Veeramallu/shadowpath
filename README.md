@@ -1,4 +1,4 @@
-# ShadowPath
+# ShadowPath (https://shade-path.netlify.app)
 
 A mobile-first campus routing app that helps ASU Tempe students, staff, and visitors navigate safely during extreme heat. ShadowPath compares three walking routes — shortest, shade-aware, and cooling-stop — each scored with a heat Exposure_Score, a Heat_Safety_Gate verdict, and a time-travel Shade_Slider so you can plan your walk for the coolest window before you step outside.
 
