@@ -21,7 +21,7 @@ export function useWeather(timeSlot: TimeSlotHour) {
 
   useEffect(() => {
     setLoading(true);
-    fetch(`/api/weather?time=${timeSlot}`)
+    fetch(`/api/weather?time=${timeSlot}`, { cache: "no-store" })
       .then((res) => res.json())
       .then((data: WeatherData) => {
         setWeather(data);

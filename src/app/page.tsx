@@ -1,11 +1,12 @@
 "use client";
-import { useEffect, useRef, useState, useTransition } from "react";
+import { useEffect, useMemo, useRef, useState, useTransition } from "react";
 import { RouteForm } from "../../components/RouteForm";
 import { MapView } from "../../components/MapView";
 import { RouteResultPanel } from "../../components/RouteResultPanel";
 import { TextRouteSummary } from "../../components/TextRouteSummary";
 import { WalkingPathsStrip } from "../../components/WalkingPathsStrip";
 import { WeatherGlance } from "../../components/WeatherGlance";
+import { ImpactDashboard } from "../../components/ImpactDashboard";
 import { useRoutes } from "../../hooks/useRoutes";
 import { useWeather } from "../../hooks/useWeather";
 import type { RouteParams } from "../../lib/routing/types";
@@ -37,6 +38,52 @@ function RoutePlanner() {
     tripEntrances,
   } = useRoutes();
   const { weather, loading: weatherLoading } = useWeather(selectedTime);
+  const selectedWalkingRoute = useMemo(
+    () => rankedWalkingRoutes.find((r) => r.id === selectedWalkingId) ?? rankedWalkingRoutes[0] ?? null,
+    [rankedWalkingRoutes, selectedWalkingId]
+  );
+  const sunExposureImpact = useMemo(() => {
+    if (!selectedWalkingRoute) return null;
+    const leastShaded = rankedWalkingRoutes.reduce((min, route) =>
+      route.shadeEstimatePct < min.shadeEstimatePct ? route : min
+    );
+    return {
+      reducedSunExposurePct: Math.max(
+        0,
+        Math.round(selectedWalkingRoute.shadeEstimatePct - leastShaded.shadeEstimatePct)
+      ),
+      selectedShadePct: Math.round(selectedWalkingRoute.shadeEstimatePct),
+      baselineShadePct: Math.round(leastShaded.shadeEstimatePct),
+    };
+  }, [rankedWalkingRoutes, selectedWalkingRoute]);
+  const heatLoadImpact = useMemo(() => {
+    if (!selectedWalkingRoute) return null;
+    const baselineRoute = rankedWalkingRoutes.reduce((min, route) =>
+      route.shadeEstimatePct < min.shadeEstimatePct ? route : min
+    );
+
+    const selectedShadeFraction = Math.min(1, Math.max(0, selectedWalkingRoute.shadeEstimatePct / 100));
+    const baselineShadeFraction = Math.min(1, Math.max(0, baselineRoute.shadeEstimatePct / 100));
+    const heatIntensity = Math.max(0, weather.heatIndex - 70);
+
+    // Relative body-heat-load proxy: hotter air + longer duration + less shade => higher load.
+    const selectedHeatLoad =
+      selectedWalkingRoute.durationMinutes * heatIntensity * (1 - selectedShadeFraction);
+    const baselineHeatLoad = baselineRoute.durationMinutes * heatIntensity * (1 - baselineShadeFraction);
+    const avoidedHeatLoad = Math.max(0, baselineHeatLoad - selectedHeatLoad);
+    const reductionPct = baselineHeatLoad > 0 ? Math.round((avoidedHeatLoad / baselineHeatLoad) * 100) : 0;
+
+    return {
+      selectedHeatLoad: Math.round(selectedHeatLoad),
+      baselineHeatLoad: Math.round(baselineHeatLoad),
+      avoidedHeatLoad: Math.round(avoidedHeatLoad),
+      reductionPct,
+      selectedDurationMin: Math.round(selectedWalkingRoute.durationMinutes),
+      baselineDurationMin: Math.round(baselineRoute.durationMinutes),
+      selectedShadePct: Math.round(selectedWalkingRoute.shadeEstimatePct),
+      baselineShadePct: Math.round(baselineRoute.shadeEstimatePct),
+    };
+  }, [rankedWalkingRoutes, selectedWalkingRoute, weather.heatIndex]);
 
   useEffect(() => {
     if (weatherLoading) return;
@@ -86,7 +133,13 @@ function RoutePlanner() {
           </section>
 
           <aside className="lg:sticky lg:top-6">
-            <WeatherGlance weather={weather} timeSlot={selectedTime} loading={weatherLoading} />
+            <WeatherGlance
+              weather={weather}
+              timeSlot={selectedTime}
+              loading={weatherLoading}
+              sunExposureImpact={sunExposureImpact}
+              heatLoadImpact={heatLoadImpact}
+            />
             <p className="mt-4 text-center text-xs leading-relaxed text-slate-500 lg:text-left hc:text-black">
               Weather refreshes when you change the time slider — try sliding through the day.
             </p>
@@ -155,6 +208,8 @@ function RoutePlanner() {
         </section>
 
         <RouteResultPanel results={routeResults} loading={isPending} ref={resultHeadingRef} />
+
+        <ImpactDashboard heatLoadImpact={heatLoadImpact} />
 
         <TextRouteSummary results={routeResults} />
       </div>

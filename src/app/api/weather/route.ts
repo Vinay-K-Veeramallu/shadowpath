@@ -3,6 +3,7 @@ import { fetchWeather } from "../../../../lib/weather/fetchWeather";
 import type { TimeSlotHour } from "../../../../lib/timeSlots";
 
 const SLOTS = new Set<TimeSlotHour>([6, 8, 10, 12, 14, 16, 18, 20]);
+export const dynamic = "force-dynamic";
 
 export async function GET(request: NextRequest) {
   const timeParam = request.nextUrl.searchParams.get("time");
@@ -12,5 +13,9 @@ export async function GET(request: NextRequest) {
     : 10;
 
   const weather = await fetchWeather(timeSlot);
-  return NextResponse.json(weather);
+  return NextResponse.json(weather, {
+    headers: {
+      "Cache-Control": "no-store, no-cache, must-revalidate",
+    },
+  });
 }

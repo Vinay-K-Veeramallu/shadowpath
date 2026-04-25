@@ -23,6 +23,14 @@ Open [http://localhost:3000](http://localhost:3000) in your browser.
 
 The app runs entirely from a local static GeoJSON dataset — no external map tile server or API key is required for core functionality. An optional live weather fetch from the National Weather Service API improves score confidence but degrades gracefully to a demo heat index (105°F) when unavailable.
 
+To refresh building/tree dimensions from live OpenStreetMap data (Overpass), run:
+
+```bash
+npm run generate-data -- --force --live
+```
+
+This pulls publicly available building heights (`height` / `building:levels`) and tree attributes (`height`, `crown_diameter`, species), then fills only missing values with transparent estimates.
+
 ---
 
 ## Running Tests

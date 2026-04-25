@@ -26,31 +26,37 @@ function parseWindMps(raw: unknown): number {
 
 const NWS_POINTS_URL = "https://api.weather.gov/points/33.4255,-111.9400";
 
-function hourFromPeriod(period: Record<string, unknown>): number | null {
-  const startTime = period.startTime as string | undefined;
-  if (!startTime) return null;
-  return new Date(startTime).getHours();
-}
-
-/** Pick the forecast period whose start hour is nearest to `targetHour`. */
-function pickPeriodForHour(
+/** Pick the next forecast period matching the selected local hour. */
+function pickPeriodForSlotHour(
   periods: Array<Record<string, unknown>>,
   targetHour: TimeSlotHour
 ): Record<string, unknown> | undefined {
-  let best: { period: Record<string, unknown>; d: number } | undefined;
+  const nowMs = Date.now();
+  let bestFuture: { period: Record<string, unknown>; t: number } | undefined;
+  let bestAny: { period: Record<string, unknown>; t: number } | undefined;
+
   for (const period of periods) {
-    const h = hourFromPeriod(period);
-    if (h === null) continue;
-    const d = Math.abs(h - targetHour);
-    if (!best || d < best.d) best = { period, d };
+    const startTime = period.startTime as string | undefined;
+    if (!startTime) continue;
+    const start = new Date(startTime);
+    if (Number.isNaN(start.getTime()) || start.getHours() !== targetHour) continue;
+
+    const t = start.getTime();
+    if (!bestAny || t < bestAny.t) bestAny = { period, t };
+    if (t >= nowMs && (!bestFuture || t < bestFuture.t)) {
+      bestFuture = { period, t };
+    }
   }
-  return best?.period;
+
+  // Prefer the next upcoming slot (e.g., next 10 AM), otherwise earliest available.
+  return bestFuture?.period ?? bestAny?.period;
 }
 
 export async function fetchWeather(timeSlot: TimeSlotHour): Promise<WeatherData> {
   try {
     const pointsRes = await fetch(NWS_POINTS_URL, {
       headers: { "User-Agent": "ShadowPath/1.0" },
+      cache: "no-store",
     });
     if (!pointsRes.ok) return DEMO_FALLBACK;
 
@@ -61,6 +67,7 @@ export async function fetchWeather(timeSlot: TimeSlotHour): Promise<WeatherData>
 
     const forecastRes = await fetch(forecastHourlyUrl, {
       headers: { "User-Agent": "ShadowPath/1.0" },
+      cache: "no-store",
     });
     if (!forecastRes.ok) return DEMO_FALLBACK;
 
@@ -69,8 +76,7 @@ export async function fetchWeather(timeSlot: TimeSlotHour): Promise<WeatherData>
       forecastData?.properties?.periods;
     if (!Array.isArray(periods) || periods.length === 0) return DEMO_FALLBACK;
 
-    const exact = periods.find((period) => hourFromPeriod(period) === timeSlot);
-    const matchingPeriod = exact ?? pickPeriodForHour(periods, timeSlot);
+    const matchingPeriod = pickPeriodForSlotHour(periods, timeSlot);
     if (!matchingPeriod) return DEMO_FALLBACK;
 
     const temperature = matchingPeriod.temperature as number;

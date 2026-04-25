@@ -42,12 +42,6 @@ export function useRoutes() {
   const [selectedWalkingId, setSelectedWalkingId] = useState<string | null>(null);
   const resultHeadingRef = useRef<HTMLHeadingElement>(null);
 
-  useEffect(() => {
-    if (routeResults.length > 0) {
-      resultHeadingRef.current?.focus();
-    }
-  }, [routeResults]);
-
   const triggerCompute = useCallback((params: RouteParams, weather: WeatherData) => {
     const resolved: RouteParams = {
       ...params,

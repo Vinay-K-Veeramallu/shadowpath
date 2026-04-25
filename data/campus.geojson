@@ -63,7 +63,10 @@
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [-111.93522, 33.41768]
+        "coordinates": [
+          -111.93522,
+          33.41768
+        ]
       }
     },
     {
@@ -77,7 +80,10 @@
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [-111.93485, 33.41795]
+        "coordinates": [
+          -111.93485,
+          33.41795
+        ]
       }
     },
     {
@@ -91,7 +97,10 @@
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [-111.93985, 33.42278]
+        "coordinates": [
+          -111.93985,
+          33.42278
+        ]
       }
     },
     {
@@ -105,7 +114,10 @@
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [-111.94045, 33.42242]
+        "coordinates": [
+          -111.94045,
+          33.42242
+        ]
       }
     },
     {
@@ -2233,6 +2245,386 @@
         "coordinates": [
           -111.92926,
           33.421279999999996
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "footprint-b1",
+        "type": "building_footprint",
+        "buildingId": "b1",
+        "heightMeters": 12,
+        "heightSource": "estimate",
+        "name": "Hayden Library"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -111.93553713826891,
+              33.41881446471953
+            ],
+            [
+              -111.93526286173108,
+              33.41881446471953
+            ],
+            [
+              -111.93526286209264,
+              33.41858553512957
+            ],
+            [
+              -111.93553713790736,
+              33.41858553512957
+            ],
+            [
+              -111.93553713826891,
+              33.41881446471953
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "footprint-b2",
+        "type": "building_footprint",
+        "buildingId": "b2",
+        "heightMeters": 12,
+        "heightSource": "estimate",
+        "name": "Memorial Union"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -111.93553713700545,
+              33.41801446471953
+            ],
+            [
+              -111.93526286299455,
+              33.41801446471953
+            ],
+            [
+              -111.93526286335609,
+              33.41778553512959
+            ],
+            [
+              -111.93553713664392,
+              33.41778553512959
+            ],
+            [
+              -111.93553713700545,
+              33.41801446471953
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "footprint-b3",
+        "type": "building_footprint",
+        "buildingId": "b3",
+        "heightMeters": 12,
+        "heightSource": "estimate",
+        "name": "Brickyard"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -111.94033714442901,
+              33.42271446471952
+            ],
+            [
+              -111.94006285557099,
+              33.42271446471952
+            ],
+            [
+              -111.94006285593261,
+              33.422485535129574
+            ],
+            [
+              -111.94033714406739,
+              33.422485535129574
+            ],
+            [
+              -111.94033714442901,
+              33.42271446471952
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "footprint-b4",
+        "type": "building_footprint",
+        "buildingId": "b4",
+        "heightMeters": 12,
+        "heightSource": "estimate",
+        "name": "Fulton Center"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -111.93773714269143,
+              33.42161446471953
+            ],
+            [
+              -111.93746285730857,
+              33.42161446471953
+            ],
+            [
+              -111.93746285767017,
+              33.42138553512957
+            ],
+            [
+              -111.93773714232982,
+              33.42138553512957
+            ],
+            [
+              -111.93773714269143,
+              33.42161446471953
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "footprint-b5",
+        "type": "building_footprint",
+        "buildingId": "b5",
+        "heightMeters": 12,
+        "heightSource": "estimate",
+        "name": "Old Main"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -111.93533714032215,
+              33.420114464719525
+            ],
+            [
+              -111.93506285967784,
+              33.420114464719525
+            ],
+            [
+              -111.93506286003942,
+              33.41988553512958
+            ],
+            [
+              -111.93533713996055,
+              33.41988553512958
+            ],
+            [
+              -111.93533714032215,
+              33.420114464719525
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "footprint-b6",
+        "type": "building_footprint",
+        "buildingId": "b6",
+        "heightMeters": 12,
+        "heightSource": "estimate",
+        "name": "Gammage Auditorium"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -111.9371371295836,
+              33.41331446471955
+            ],
+            [
+              -111.93686287041638,
+              33.41331446471955
+            ],
+            [
+              -111.93686287077784,
+              33.413085535129596
+            ],
+            [
+              -111.93713712922214,
+              33.413085535129596
+            ],
+            [
+              -111.9371371295836,
+              33.41331446471955
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "footprint-b7",
+        "type": "building_footprint",
+        "buildingId": "b7",
+        "heightMeters": 12,
+        "heightSource": "estimate",
+        "name": "Sun Devil Stadium"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -111.9327371507483,
+              33.4267144647195
+            ],
+            [
+              -111.93246284925169,
+              33.4267144647195
+            ],
+            [
+              -111.93246284961339,
+              33.42648553512956
+            ],
+            [
+              -111.93273715038657,
+              33.42648553512956
+            ],
+            [
+              -111.9327371507483,
+              33.4267144647195
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "footprint-b8",
+        "type": "building_footprint",
+        "buildingId": "b8",
+        "heightMeters": 12,
+        "heightSource": "estimate",
+        "name": "Biodesign Institute"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -111.92813714016421,
+              33.42001446471953
+            ],
+            [
+              -111.92786285983581,
+              33.42001446471953
+            ],
+            [
+              -111.92786286019738,
+              33.41978553512958
+            ],
+            [
+              -111.92813713980263,
+              33.41978553512958
+            ],
+            [
+              -111.92813714016421,
+              33.42001446471953
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "footprint-b9",
+        "type": "building_footprint",
+        "buildingId": "b9",
+        "heightMeters": 12,
+        "heightSource": "estimate",
+        "name": "ISTB4"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -111.92613713826893,
+              33.41881446471953
+            ],
+            [
+              -111.92586286173109,
+              33.41881446471953
+            ],
+            [
+              -111.92586286209266,
+              33.41858553512957
+            ],
+            [
+              -111.92613713790736,
+              33.41858553512957
+            ],
+            [
+              -111.92613713826893,
+              33.41881446471953
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "footprint-b10",
+        "type": "building_footprint",
+        "buildingId": "b10",
+        "heightMeters": 12,
+        "heightSource": "estimate",
+        "name": "Wrigley Hall"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -111.92963714221756,
+              33.42131446471953
+            ],
+            [
+              -111.92936285778245,
+              33.42131446471953
+            ],
+            [
+              -111.92936285814406,
+              33.42108553512957
+            ],
+            [
+              -111.92963714185595,
+              33.42108553512957
+            ],
+            [
+              -111.92963714221756,
+              33.42131446471953
+            ]
+          ]
         ]
       }
     }
