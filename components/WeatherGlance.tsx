@@ -185,7 +185,20 @@ export function WeatherGlance({
           <dt className="font-medium text-slate-400 hc:text-black">Humidity</dt>
           <dd>{Math.round(weather.relativeHumidity)}%</dd>
         </div>
+        <div className="rounded-lg bg-white/60 px-2 py-1.5 hc:bg-white">
+          <dt className="font-medium text-slate-400 hc:text-black">Cloud cover</dt>
+          <dd>{Math.round(weather.cloudCoverPct)}%</dd>
+        </div>
+        <div className="rounded-lg bg-white/60 px-2 py-1.5 hc:bg-white">
+          <dt className="font-medium text-slate-400 hc:text-black">Sky</dt>
+          <dd className="truncate" title={weather.shortForecast}>{weather.shortForecast || "—"}</dd>
+        </div>
       </dl>
+      {weather.cloudCoverPct >= 50 && (
+        <p className="mt-2 rounded-lg bg-sky-100/80 px-2 py-1 text-[11px] leading-snug text-sky-900 hc:bg-white hc:text-black hc:ring hc:ring-black">
+          ☁️ Cloudy skies reduce direct-sun load — the gap between sunny and shaded paths matters less today.
+        </p>
+      )}
       <div className="mt-3 rounded-xl border border-emerald-200/90 bg-emerald-50/85 px-3 py-2.5 text-xs text-emerald-950 hc:border-black hc:bg-white hc:text-black">
         <p className="font-semibold tracking-wide">Sun Exposure Impact</p>
         {sunExposureImpact ? (

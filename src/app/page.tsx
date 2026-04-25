@@ -11,6 +11,7 @@ import { useRoutes } from "../../hooks/useRoutes";
 import { useWeather } from "../../hooks/useWeather";
 import type { RouteParams } from "../../lib/routing/types";
 import { DatasetError } from "../../lib/graph/types";
+import { effectiveShadeFraction } from "../../lib/routing/exposureScore";
 
 let datasetError: string | null = null;
 try {
@@ -21,7 +22,16 @@ try {
     err instanceof DatasetError ? err.message : "Campus data unavailable.";
 }
 
+function parseDateString(s: string | null): Date | undefined {
+  if (!s) return undefined;
+  const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(s);
+  if (!m) return undefined;
+  return new Date(Number(m[1]), Number(m[2]) - 1, Number(m[3]), 12, 0, 0, 0);
+}
+
 function RoutePlanner() {
+  const [forecastDateStr, setForecastDateStr] = useState<string | null>(null);
+  const forecastDate = useMemo(() => parseDateString(forecastDateStr), [forecastDateStr]);
   const {
     routeResults,
     selectedTime,
@@ -37,7 +47,7 @@ function RoutePlanner() {
     setSelectedWalkingId,
     tripEntrances,
   } = useRoutes();
-  const { weather, loading: weatherLoading } = useWeather(selectedTime);
+  const { weather, loading: weatherLoading } = useWeather(selectedTime, forecastDate);
   const selectedWalkingRoute = useMemo(
     () => rankedWalkingRoutes.find((r) => r.id === selectedWalkingId) ?? rankedWalkingRoutes[0] ?? null,
     [rankedWalkingRoutes, selectedWalkingId]
@@ -64,8 +74,14 @@ function RoutePlanner() {
       route.shadeEstimatePct < min.shadeEstimatePct ? route : min
     );
 
-    const selectedShadeFraction = Math.min(1, Math.max(0, selectedWalkingRoute.shadeEstimatePct / 100));
-    let baselineShadeFraction = Math.min(1, Math.max(0, baselineRoute.shadeEstimatePct / 100));
+    const selectedShadeFraction = effectiveShadeFraction(
+      selectedWalkingRoute.shadeEstimatePct,
+      weather.cloudCoverPct
+    );
+    let baselineShadeFraction = effectiveShadeFraction(
+      baselineRoute.shadeEstimatePct,
+      weather.cloudCoverPct
+    );
     
     // If the selected route is exactly the baseline (or there's no worse alternative),
     // we show the impact compared to a hypothetical "0% shade" scenario for that same route
@@ -74,7 +90,6 @@ function RoutePlanner() {
        baselineRoute = selectedWalkingRoute;
        baselineShadeFraction = 0; // Hypothetical unshaded baseline
     }
-
     const heatIntensity = Math.max(0, weather.heatIndex - 70);
 
     // Relative body-heat-load proxy: hotter air + longer duration + less shade => higher load.
@@ -97,12 +112,12 @@ function RoutePlanner() {
       baselineShadePct: Math.round(baselineShadeFraction * 100),
       hypothetical: baselineShadeFraction === 0 && selectedShadeFraction > 0
     };
-  }, [rankedWalkingRoutes, selectedWalkingRoute, weather.heatIndex]);
+  }, [rankedWalkingRoutes, selectedWalkingRoute, weather.heatIndex, weather.cloudCoverPct]);
 
   useEffect(() => {
     if (weatherLoading) return;
-    recomputeRoutesForCurrentWeather(weather);
-  }, [weather, weatherLoading, selectedTime, recomputeRoutesForCurrentWeather]);
+    recomputeRoutesForCurrentWeather(weather, forecastDate);
+  }, [weather, weatherLoading, selectedTime, forecastDate, recomputeRoutesForCurrentWeather]);
   const [accessibilityMode, setAccessibilityMode] = useState(false);
   const [isPending, startTransition] = useTransition();
   const hasSubmitted = useRef(false);
@@ -143,6 +158,8 @@ function RoutePlanner() {
               isSearching={isPending}
               timeSlot={selectedTime}
               onTimeSlotChange={setSelectedTime}
+              forecastDate={forecastDateStr}
+              onForecastDateChange={setForecastDateStr}
             />
           </section>
 
@@ -223,7 +240,11 @@ function RoutePlanner() {
 
         <RouteResultPanel results={routeResults} loading={isPending} ref={resultHeadingRef} />
 
-        <ImpactDashboard heatLoadImpact={heatLoadImpact} />
+        <ImpactDashboard
+          heatLoadImpact={heatLoadImpact}
+          sunExposureImpact={sunExposureImpact}
+          weather={weather}
+        />
 
         <TextRouteSummary results={routeResults} />
       </div>

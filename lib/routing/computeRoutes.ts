@@ -59,7 +59,7 @@ export function computeRoutes(
     relativeHumidity: weather.relativeHumidity,
   };
 
-  const when = dateTimeForSlot(timeSlot);
+  const when = dateTimeForSlot(timeSlot, params.forecastDate);
   attachShadeForDatetime(graph, when, timeSlot);
 
   const shortest = shortestRoute(graph, origin, destination, accessibilityMode, accessLevel);
@@ -199,6 +199,7 @@ export function computeRoutes(
       heatIndex: weather.heatIndex,
       coolingStopCount: merged.coolingStopCount,
       accessibilityMode,
+      cloudCoverPct: weather.cloudCoverPct,
     });
 
     const averageUtciC = averageUtci(merged.edges, timeSlot, edgeWeather);

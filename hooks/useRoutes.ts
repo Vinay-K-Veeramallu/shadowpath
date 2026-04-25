@@ -56,10 +56,14 @@ export function useRoutes() {
 
   /** Re-run graph routing with the current time slot and latest weather (call after forecast fetch settles). */
   const recomputeRoutesForCurrentWeather = useCallback(
-    (weather: WeatherData) => {
+    (weather: WeatherData, forecastDate?: Date) => {
       if (!lastParams) return;
       setRouteResults(
-        computeRoutes(campusGraph, { ...lastParams, timeSlot: selectedTime }, weather)
+        computeRoutes(
+          campusGraph,
+          { ...lastParams, timeSlot: selectedTime, forecastDate },
+          weather
+        )
       );
     },
     [lastParams, selectedTime]

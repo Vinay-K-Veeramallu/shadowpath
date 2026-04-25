@@ -16,6 +16,8 @@ export interface RouteParams {
   timeSlot?: TimeSlotHour;
   /** Legacy three-slot API — mapped to the same hour values (10, 14, 18). */
   timeOfDay?: 10 | 14 | 18;
+  /** Calendar day to plan for (defaults to today). Combined with `timeSlot` to set sun position. */
+  forecastDate?: Date;
   accessibilityMode: boolean;
   comfortWeights?: ComfortWeights;
   accessLevel?: AccessLevel;

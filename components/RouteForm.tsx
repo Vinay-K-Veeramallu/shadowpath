@@ -21,6 +21,8 @@ const COMFORT_ICONS: Record<ComfortPriority, string> = {
   coolest: "🧊",
 };
 
+type TimeMode = "now" | "future";
+
 interface RouteFormProps {
   onSubmit: (params: RouteParams) => void;
   disabled?: boolean;
@@ -28,6 +30,28 @@ interface RouteFormProps {
   /** When set with `onTimeSlotChange`, the time slider is controlled (e.g. shared with weather). */
   timeSlot?: TimeSlotHour;
   onTimeSlotChange?: (t: TimeSlotHour) => void;
+  /** Controlled forecast date (YYYY-MM-DD). When provided with onChange, parent owns it. */
+  forecastDate?: string | null;
+  onForecastDateChange?: (date: string | null) => void;
+}
+
+const MAX_FUTURE_DAYS = 6;
+
+function localDateInputValue(d: Date): string {
+  const y = d.getFullYear();
+  const m = String(d.getMonth() + 1).padStart(2, "0");
+  const day = String(d.getDate()).padStart(2, "0");
+  return `${y}-${m}-${day}`;
+}
+
+function todayInputValue(): string {
+  return localDateInputValue(new Date());
+}
+
+function maxFutureInputValue(): string {
+  const d = new Date();
+  d.setDate(d.getDate() + MAX_FUTURE_DAYS);
+  return localDateInputValue(d);
 }
 
 export function RouteForm({
@@ -36,6 +60,8 @@ export function RouteForm({
   isSearching = false,
   timeSlot: controlledTimeSlot,
   onTimeSlotChange,
+  forecastDate: controlledForecastDate,
+  onForecastDateChange,
 }: RouteFormProps) {
   const [origin, setOrigin] = useState("");
   const [destination, setDestination] = useState("");
@@ -46,6 +72,18 @@ export function RouteForm({
     if (controlled) onTimeSlotChange(next);
     else setInternalTimeSlot(next);
   }
+
+  const dateControlled =
+    controlledForecastDate !== undefined && onForecastDateChange !== undefined;
+  const [internalForecastDate, setInternalForecastDate] = useState<string | null>(null);
+  const forecastDate = dateControlled ? controlledForecastDate : internalForecastDate;
+  function setForecastDate(next: string | null) {
+    if (dateControlled) onForecastDateChange(next);
+    else setInternalForecastDate(next);
+  }
+  const timeMode: TimeMode = forecastDate ? "future" : "now";
+  const minDate = todayInputValue();
+  const maxDate = maxFutureInputValue();
   const [accessLevel, setAccessLevel] = useState<AccessLevel>("student");
   const [accessibilityMode, setAccessibilityMode] = useState(false);
   const [comfortPriority, setComfortPriority] = useState<ComfortPriority>("balanced");
@@ -79,10 +117,18 @@ export function RouteForm({
     if (!destination.trim()) newErrors.destination = "Destination is required.";
     setErrors(newErrors);
     if (Object.keys(newErrors).length > 0) return;
+    let forecastDateObj: Date | undefined;
+    if (forecastDate) {
+      const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(forecastDate);
+      if (m) {
+        forecastDateObj = new Date(Number(m[1]), Number(m[2]) - 1, Number(m[3]), 12, 0, 0, 0);
+      }
+    }
     onSubmit({
       origin: origin.trim(),
       destination: destination.trim(),
       timeSlot,
+      forecastDate: forecastDateObj,
       accessibilityMode,
       accessLevel,
       comfortWeights: COMFORT_WEIGHT_PRESETS[comfortPriority],
@@ -173,6 +219,67 @@ export function RouteForm({
         </div>
 
         <div className="mt-8 border-t border-slate-100 pt-8 hc:border-black">
+          <fieldset className="mb-5">
+            <legend className="mb-2 text-xs font-semibold uppercase tracking-wide text-slate-500 hc:text-black">
+              Plan for
+            </legend>
+            <div role="radiogroup" aria-label="Time mode" className="flex flex-wrap gap-2">
+              <button
+                type="button"
+                role="radio"
+                aria-checked={timeMode === "now"}
+                onClick={() => setForecastDate(null)}
+                className={`inline-flex items-center gap-2 rounded-2xl border px-4 py-2 text-sm font-semibold transition-all sp-ring-focus ${
+                  timeMode === "now"
+                    ? "border-indigo-500 bg-indigo-50 text-indigo-900 shadow-sm hc:border-black hc:bg-white hc:text-black"
+                    : "border-slate-200 bg-white text-slate-600 hover:border-slate-300 hover:bg-slate-50 hc:border-black hc:bg-white hc:text-black"
+                }`}
+              >
+                <span aria-hidden>🕒</span>
+                <span>Today</span>
+              </button>
+              <button
+                type="button"
+                role="radio"
+                aria-checked={timeMode === "future"}
+                onClick={() => {
+                  if (!forecastDate) {
+                    const tomorrow = new Date();
+                    tomorrow.setDate(tomorrow.getDate() + 1);
+                    setForecastDate(localDateInputValue(tomorrow));
+                  }
+                }}
+                className={`inline-flex items-center gap-2 rounded-2xl border px-4 py-2 text-sm font-semibold transition-all sp-ring-focus ${
+                  timeMode === "future"
+                    ? "border-indigo-500 bg-indigo-50 text-indigo-900 shadow-sm hc:border-black hc:bg-white hc:text-black"
+                    : "border-slate-200 bg-white text-slate-600 hover:border-slate-300 hover:bg-slate-50 hc:border-black hc:bg-white hc:text-black"
+                }`}
+              >
+                <span aria-hidden>📅</span>
+                <span>Future date</span>
+              </button>
+              {timeMode === "future" && (
+                <div className="ml-1 flex items-center gap-2">
+                  <label htmlFor="forecast-date" className="sr-only">
+                    Forecast date
+                  </label>
+                  <input
+                    id="forecast-date"
+                    type="date"
+                    value={forecastDate ?? ""}
+                    min={minDate}
+                    max={maxDate}
+                    onChange={(e) => setForecastDate(e.target.value || null)}
+                    className="rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm text-slate-900 shadow-sm hover:border-slate-300 focus:border-indigo-400 focus:outline-none focus:ring-2 focus:ring-indigo-500/30 hc:border-black hc:bg-white hc:text-black"
+                  />
+                </div>
+              )}
+            </div>
+            <p className="mt-2 text-[11px] leading-relaxed text-slate-500 hc:text-black">
+              Sun angle, shade, and weather (incl. cloud cover) are recomputed for the chosen day & hour.
+              Forecast horizon: up to {MAX_FUTURE_DAYS} days.
+            </p>
+          </fieldset>
           <ShadeSlider value={timeSlot} onChange={setTimeSlot} />
         </div>
 
