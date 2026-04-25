@@ -10,6 +10,7 @@ const DEMO_FALLBACK: WeatherData = {
   windSpeedMps: 2.2,
   confidence: "Low",
   source: "demo-fallback",
+  forecastFor: null,
   fetchedAt: null,
 };
 

@@ -9,6 +9,7 @@ const DEMO_FALLBACK: WeatherData = {
   windSpeedMps: 2.2,
   confidence: "Low",
   source: "demo-fallback",
+  forecastFor: null,
   fetchedAt: null,
 };
 
@@ -109,6 +110,7 @@ export async function fetchWeather(timeSlot: TimeSlotHour): Promise<WeatherData>
       windSpeedMps,
       confidence,
       source,
+      forecastFor: forecastDate,
       fetchedAt: new Date(),
     };
   } catch {

@@ -5,5 +5,6 @@ export interface WeatherData {
   windSpeedMps: number;       // m/s at 10m
   confidence: "High" | "Medium" | "Low";
   source: "nws-live" | "nws-forecast" | "demo-fallback";
+  forecastFor: Date | null;
   fetchedAt: Date | null;
 }
