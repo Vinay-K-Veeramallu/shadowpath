@@ -19,6 +19,13 @@ function heatEmoji(tempF: number): string {
 
 export function WeatherGlance({ weather, timeSlot, loading }: WeatherGlanceProps) {
   const slotLabel = TIME_SLOT_LABELS[timeSlot];
+  const weatherDateLabel = weather.fetchedAt
+    ? new Date(weather.fetchedAt).toLocaleDateString(undefined, {
+        weekday: "short",
+        month: "short",
+        day: "numeric",
+      })
+    : "Demo weather";
 
   return (
     <div
@@ -31,6 +38,7 @@ export function WeatherGlance({ weather, timeSlot, loading }: WeatherGlanceProps
       <p className="text-xs font-semibold uppercase tracking-wide text-slate-500 hc:text-black">
         Plan for {slotLabel}
       </p>
+      <p className="mt-1 text-xs text-slate-500 hc:text-black">{weatherDateLabel}</p>
       {loading ? (
         <div className="mt-2 h-10 w-32 animate-pulse rounded-lg bg-slate-200/80 hc:bg-gray-200" />
       ) : (
