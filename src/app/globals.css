@@ -3,25 +3,63 @@
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #f8fafc;
+  --foreground: #0f172a;
+  --sp-card: #ffffff;
+  --sp-sun: #fbbf24;
+  --sp-shade: #38bdf8;
+  --sp-accent: #4f46e5;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #f8fafc;
+    --foreground: #0f172a;
   }
 }
 
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+}
+
+/* Subtle page backdrop (disabled in high-contrast via Tailwind hc: overrides on children) */
+.sp-page-bg {
+  background-color: #f1f5f9;
+  background-image:
+    radial-gradient(ellipse 120% 80% at 50% -20%, rgba(251, 191, 36, 0.18), transparent 55%),
+    radial-gradient(ellipse 80% 50% at 100% 50%, rgba(56, 189, 248, 0.12), transparent 45%),
+    radial-gradient(ellipse 60% 40% at 0% 80%, rgba(79, 70, 229, 0.08), transparent 40%);
 }
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+
+  .sp-ring-focus {
+    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2;
+  }
+
+  @keyframes sp-fade-up {
+    from {
+      opacity: 0;
+      transform: translateY(8px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .sp-animate-in {
+    animation: sp-fade-up 0.45s ease-out both;
+  }
+
+  @keyframes sp-shimmer {
+    100% {
+      transform: translateX(100%);
+    }
   }
 }

@@ -1,101 +1,185 @@
-import Image from "next/image";
+"use client";
+import { useEffect, useRef, useState, useTransition } from "react";
+import { RouteForm } from "../../components/RouteForm";
+import { MapView } from "../../components/MapView";
+import { RouteResultPanel } from "../../components/RouteResultPanel";
+import { TextRouteSummary } from "../../components/TextRouteSummary";
+import { WalkingPathsStrip } from "../../components/WalkingPathsStrip";
+import { WeatherGlance } from "../../components/WeatherGlance";
+import { useRoutes } from "../../hooks/useRoutes";
+import { useWeather } from "../../hooks/useWeather";
+import type { RouteParams } from "../../lib/routing/types";
+import { DatasetError } from "../../lib/graph/types";
+
+let datasetError: string | null = null;
+try {
+  // eslint-disable-next-line @typescript-eslint/no-require-imports
+  require("../../lib/data/loadDataset");
+} catch (err) {
+  datasetError =
+    err instanceof DatasetError ? err.message : "Campus data unavailable.";
+}
+
+function RoutePlanner() {
+  const {
+    routeResults,
+    selectedTime,
+    setSelectedTime,
+    resultHeadingRef,
+    triggerCompute,
+    recomputeRoutesForCurrentWeather,
+    rankedWalkingRoutes,
+    walkingAttribution,
+    walkingProvider,
+    walkingFetchError,
+    selectedWalkingId,
+    setSelectedWalkingId,
+    tripEntrances,
+  } = useRoutes();
+  const { weather, loading: weatherLoading } = useWeather(selectedTime);
+
+  useEffect(() => {
+    if (weatherLoading) return;
+    recomputeRoutesForCurrentWeather(weather);
+  }, [weather, weatherLoading, selectedTime, recomputeRoutesForCurrentWeather]);
+  const [accessibilityMode, setAccessibilityMode] = useState(false);
+  const [isPending, startTransition] = useTransition();
+  const hasSubmitted = useRef(false);
+
+  function handleFormSubmit(params: RouteParams) {
+    hasSubmitted.current = true;
+    setAccessibilityMode(params.accessibilityMode);
+    startTransition(() => {
+      triggerCompute(params, weather);
+    });
+  }
+
+  const showNoRoute = hasSubmitted.current && routeResults.length === 0 && !isPending;
+
+  return (
+    <div className="sp-page-bg min-h-[calc(100vh-4rem)]">
+      <div className="mx-auto max-w-6xl px-4 py-8 sm:px-6 lg:px-8 lg:py-10">
+        <header className="mb-8 text-center sm:mb-10 sm:text-left">
+          <p className="mb-2 inline-flex items-center gap-2 rounded-full bg-white/80 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-indigo-600 shadow-sm ring-1 ring-indigo-100 hc:ring-black">
+            <span aria-hidden>🌤️</span> ShadowPath
+          </p>
+          <h1 className="text-balance text-3xl font-extrabold tracking-tight text-slate-900 sm:text-4xl hc:text-black">
+            Routes that respect{" "}
+            <span className="bg-gradient-to-r from-amber-500 to-orange-500 bg-clip-text text-transparent hc:bg-none hc:text-inherit">
+              heat and shade
+            </span>
+          </h1>
+          <p className="mx-auto mt-3 max-w-2xl text-base text-slate-600 sm:mx-0 hc:text-black">
+            Pick when you&apos;re walking, peek at the weather card, then compare sidewalk-aligned
+            paths (OpenStreetMap / optional Google) with the campus shade model on the map.
+          </p>
+        </header>
+
+        <div className="grid items-start gap-8 lg:grid-cols-[minmax(0,1fr)_320px]">
+          <section aria-label="Route planner" className="min-w-0">
+            <RouteForm
+              onSubmit={handleFormSubmit}
+              isSearching={isPending}
+              timeSlot={selectedTime}
+              onTimeSlotChange={setSelectedTime}
+            />
+          </section>
+
+          <aside className="lg:sticky lg:top-6">
+            <WeatherGlance weather={weather} timeSlot={selectedTime} loading={weatherLoading} />
+            <p className="mt-4 text-center text-xs leading-relaxed text-slate-500 lg:text-left hc:text-black">
+              Weather refreshes when you change the time slider — try sliding through the day.
+            </p>
+          </aside>
+        </div>
+
+        {showNoRoute && (
+          <p
+            role="status"
+            className="mt-8 rounded-2xl border border-amber-200/80 bg-amber-50/90 px-4 py-3 text-center text-sm font-medium text-amber-900 hc:border-black hc:bg-white hc:text-black"
+          >
+            No route found between those spots. Try different building names or IDs.
+          </p>
+        )}
+
+        <section
+          aria-label="Campus map"
+          className="mt-10 overflow-hidden rounded-3xl border border-slate-200/80 bg-slate-900/5 p-2 shadow-card hc:border-black hc:bg-white hc:p-0"
+        >
+          <div className="flex items-center justify-between gap-2 rounded-2xl bg-white/90 px-4 py-3 sm:px-5 hc:bg-white">
+            <h2 className="text-sm font-bold text-slate-800 hc:text-black">
+              <span className="mr-2" aria-hidden>
+                🗺️
+              </span>
+              Campus map
+            </h2>
+            <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-medium text-slate-600 hc:bg-white hc:text-black hc:ring hc:ring-black">
+              {accessibilityMode ? "Accessible paths" : "All paths"}
+            </span>
+          </div>
+          <div className="space-y-3 p-3 sm:p-4 hc:p-0">
+            <WalkingPathsStrip
+              routes={rankedWalkingRoutes}
+              selectedId={selectedWalkingId}
+              onSelect={setSelectedWalkingId}
+              provider={walkingProvider}
+              attribution={walkingAttribution}
+              error={walkingFetchError}
+            />
+            {tripEntrances.length > 0 ? (
+              <div className="rounded-xl border border-orange-200/80 bg-orange-50/80 px-3 py-2 text-xs text-orange-950 hc:border-black hc:bg-white hc:text-black">
+                <p className="font-bold">Building doors (approximate)</p>
+                <ul className="mt-1 list-inside list-disc space-y-0.5">
+                  {tripEntrances.map((e) => (
+                    <li key={e.id}>
+                      {e.label}
+                      {!e.studentAccess ? " — staff card required" : ""}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ) : null}
+            <p className="text-[11px] leading-relaxed text-slate-500 hc:text-black">
+              Teal lines follow real pedestrian geometry from the router. Faded colored lines are the
+              demo campus graph (shade / UTCI). Orange dots mark sample entrances for this trip.
+            </p>
+            <MapView
+              routes={routeResults}
+              selectedTime={selectedTime}
+              accessibilityMode={accessibilityMode}
+              rankedWalkingRoutes={rankedWalkingRoutes}
+              selectedWalkingId={selectedWalkingId}
+              tripEntrances={tripEntrances}
+            />
+          </div>
+        </section>
+
+        <RouteResultPanel results={routeResults} loading={isPending} ref={resultHeadingRef} />
+
+        <TextRouteSummary results={routeResults} />
+      </div>
+    </div>
+  );
+}
 
 export default function Home() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="https://nextjs.org/icons/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+    <div className="min-h-0">
+      {datasetError ? (
+        <div className="mx-auto max-w-2xl px-4 py-10">
+          <div
+            role="alert"
+            className="rounded-2xl border border-rose-200 bg-rose-50 p-5 text-sm text-rose-900 hc:border-black hc:bg-white hc:text-black"
           >
-            <Image
-              className="dark:invert"
-              src="https://nextjs.org/icons/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+            Campus data unavailable. Route planning is currently disabled.
+          </div>
+          <div className="mt-6">
+            <RouteForm onSubmit={() => {}} disabled />
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+      ) : (
+        <RoutePlanner />
+      )}
     </div>
   );
 }

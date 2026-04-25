@@ -1,0 +1,2240 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -111.9354,
+          33.4187
+        ]
+      },
+      "properties": {
+        "type": "building",
+        "id": "b1",
+        "name": "Hayden Library",
+        "accessible": true,
+        "demoHeatIndex": 105
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -111.9354,
+          33.4179
+        ]
+      },
+      "properties": {
+        "type": "building",
+        "id": "b2",
+        "name": "Memorial Union",
+        "accessible": true,
+        "demoHeatIndex": 105
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -111.9402,
+          33.4226
+        ]
+      },
+      "properties": {
+        "type": "building",
+        "id": "b3",
+        "name": "Brickyard",
+        "accessible": true,
+        "demoHeatIndex": 105
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "type": "building_entrance",
+        "id": "ent-b2-south",
+        "buildingId": "b2",
+        "label": "Memorial Union — south patio / Forest Mall",
+        "studentAccess": true
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-111.93522, 33.41768]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "type": "building_entrance",
+        "id": "ent-b2-east",
+        "buildingId": "b2",
+        "label": "Memorial Union — Cady Mall (east)",
+        "studentAccess": true
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-111.93485, 33.41795]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "type": "building_entrance",
+        "id": "ent-b3-north",
+        "buildingId": "b3",
+        "label": "Brickyard — Orange St / north plaza",
+        "studentAccess": true
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-111.93985, 33.42278]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "type": "building_entrance",
+        "id": "ent-b3-south",
+        "buildingId": "b3",
+        "label": "Brickyard — south court (shaded valley)",
+        "studentAccess": true
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-111.94045, 33.42242]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -111.9376,
+          33.4215
+        ]
+      },
+      "properties": {
+        "type": "building",
+        "id": "b4",
+        "name": "Fulton Center",
+        "accessible": true,
+        "demoHeatIndex": 105
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -111.9352,
+          33.42
+        ]
+      },
+      "properties": {
+        "type": "building",
+        "id": "b5",
+        "name": "Old Main",
+        "accessible": true,
+        "demoHeatIndex": 105
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -111.937,
+          33.4132
+        ]
+      },
+      "properties": {
+        "type": "building",
+        "id": "b6",
+        "name": "Gammage Auditorium",
+        "accessible": true,
+        "demoHeatIndex": 105
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -111.9326,
+          33.4266
+        ]
+      },
+      "properties": {
+        "type": "building",
+        "id": "b7",
+        "name": "Sun Devil Stadium",
+        "accessible": true,
+        "demoHeatIndex": 105
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -111.928,
+          33.4199
+        ]
+      },
+      "properties": {
+        "type": "building",
+        "id": "b8",
+        "name": "Biodesign Institute",
+        "accessible": true,
+        "demoHeatIndex": 105
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -111.926,
+          33.4187
+        ]
+      },
+      "properties": {
+        "type": "building",
+        "id": "b9",
+        "name": "ISTB4",
+        "accessible": true,
+        "demoHeatIndex": 105
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -111.9295,
+          33.4212
+        ]
+      },
+      "properties": {
+        "type": "building",
+        "id": "b10",
+        "name": "Wrigley Hall",
+        "accessible": true,
+        "demoHeatIndex": 105
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -111.9356,
+          33.4181
+        ]
+      },
+      "properties": {
+        "type": "cooling_point",
+        "id": "cp1",
+        "name": "MU Cooling Station",
+        "accessible": true
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -111.9374,
+          33.4217
+        ]
+      },
+      "properties": {
+        "type": "cooling_point",
+        "id": "cp2",
+        "name": "Fulton Center Cooling Station",
+        "accessible": true
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -111.9325,
+          33.4262
+        ]
+      },
+      "properties": {
+        "type": "cooling_point",
+        "id": "cp3",
+        "name": "Stadium Cooling Station",
+        "accessible": true
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -111.9281,
+          33.4197
+        ]
+      },
+      "properties": {
+        "type": "cooling_point",
+        "id": "cp4",
+        "name": "Biodesign Cooling Station",
+        "accessible": true
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -111.9368,
+          33.4135
+        ]
+      },
+      "properties": {
+        "type": "cooling_point",
+        "id": "cp5",
+        "name": "Gammage Cooling Station",
+        "accessible": true
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -111.9352,
+          33.4189
+        ]
+      },
+      "properties": {
+        "type": "water_refill",
+        "id": "wr1",
+        "name": "Hayden Library Water Station",
+        "accessible": true
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -111.9356,
+          33.4179
+        ]
+      },
+      "properties": {
+        "type": "water_refill",
+        "id": "wr2",
+        "name": "Memorial Union Water Station",
+        "accessible": true
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -111.94,
+          33.4226
+        ]
+      },
+      "properties": {
+        "type": "water_refill",
+        "id": "wr3",
+        "name": "Brickyard Water Station",
+        "accessible": true
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -111.9262,
+          33.4189
+        ]
+      },
+      "properties": {
+        "type": "water_refill",
+        "id": "wr4",
+        "name": "ISTB4 Water Station",
+        "accessible": true
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -111.935,
+          33.4202
+        ]
+      },
+      "properties": {
+        "type": "water_refill",
+        "id": "wr5",
+        "name": "Old Main Water Station",
+        "accessible": true
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -111.9354,
+          33.4183
+        ]
+      },
+      "properties": {
+        "type": "intersection",
+        "id": "int1",
+        "name": "Palm Walk & University Drive",
+        "accessible": true,
+        "shadeStructures": [
+          "Palm Walk Canopy",
+          "University Shade Sail"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -111.9362,
+          33.4209
+        ]
+      },
+      "properties": {
+        "type": "intersection",
+        "id": "int2",
+        "name": "Tyler Mall & McAllister Ave",
+        "accessible": true,
+        "shadeStructures": [
+          "Tyler Mall Pergola",
+          "McAllister Trellis",
+          "Sun Shade Structure A"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -111.929,
+          33.4198
+        ]
+      },
+      "properties": {
+        "type": "intersection",
+        "id": "int3",
+        "name": "Rural Road & Apache Blvd",
+        "accessible": true,
+        "shadeStructures": [
+          "Rural Road Canopy",
+          "Apache Shade Sail"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -111.9354,
+            33.4187
+          ],
+          [
+            -111.9354,
+            33.4183
+          ]
+        ]
+      },
+      "properties": {
+        "type": "path",
+        "id": "e-b1-int1",
+        "fromNodeId": "b1",
+        "toNodeId": "int1",
+        "distanceMeters": 190,
+        "accessible": true,
+        "shade": {
+          "10": 60,
+          "14": 30,
+          "18": 70
+        },
+        "hasCoolingPoint": false,
+        "hasWaterRefill": true,
+        "shadeStructures": [
+          "Palm Walk Canopy"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -111.9354,
+            33.4183
+          ],
+          [
+            -111.9354,
+            33.4179
+          ]
+        ]
+      },
+      "properties": {
+        "type": "path",
+        "id": "e-int1-b2",
+        "fromNodeId": "int1",
+        "toNodeId": "b2",
+        "distanceMeters": 140,
+        "accessible": true,
+        "shade": {
+          "10": 50,
+          "14": 25,
+          "18": 55
+        },
+        "hasCoolingPoint": true,
+        "hasWaterRefill": false,
+        "shadeStructures": []
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -111.9354,
+            33.4183
+          ],
+          [
+            -111.9362,
+            33.4209
+          ]
+        ]
+      },
+      "properties": {
+        "type": "path",
+        "id": "e-int1-int2",
+        "fromNodeId": "int1",
+        "toNodeId": "int2",
+        "distanceMeters": 175,
+        "accessible": true,
+        "shade": {
+          "10": 70,
+          "14": 40,
+          "18": 80
+        },
+        "hasCoolingPoint": false,
+        "hasWaterRefill": false,
+        "shadeStructures": [
+          "Tyler Mall Pergola"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -111.9362,
+            33.4209
+          ],
+          [
+            -111.9402,
+            33.4226
+          ]
+        ]
+      },
+      "properties": {
+        "type": "path",
+        "id": "e-int2-b3",
+        "fromNodeId": "int2",
+        "toNodeId": "b3",
+        "distanceMeters": 230,
+        "accessible": true,
+        "shade": {
+          "10": 45,
+          "14": 20,
+          "18": 50
+        },
+        "hasCoolingPoint": false,
+        "hasWaterRefill": true,
+        "shadeStructures": []
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -111.9362,
+            33.4209
+          ],
+          [
+            -111.9376,
+            33.4215
+          ]
+        ]
+      },
+      "properties": {
+        "type": "path",
+        "id": "e-int2-b4",
+        "fromNodeId": "int2",
+        "toNodeId": "b4",
+        "distanceMeters": 115,
+        "accessible": true,
+        "shade": {
+          "10": 65,
+          "14": 35,
+          "18": 75
+        },
+        "hasCoolingPoint": true,
+        "hasWaterRefill": false,
+        "shadeStructures": [
+          "McAllister Trellis"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -111.9362,
+            33.4209
+          ],
+          [
+            -111.9352,
+            33.42
+          ]
+        ]
+      },
+      "properties": {
+        "type": "path",
+        "id": "e-int2-b5",
+        "fromNodeId": "int2",
+        "toNodeId": "b5",
+        "distanceMeters": 200,
+        "accessible": true,
+        "shade": {
+          "10": 55,
+          "14": 30,
+          "18": 65
+        },
+        "hasCoolingPoint": false,
+        "hasWaterRefill": true,
+        "shadeStructures": [
+          "Sun Shade Structure A"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -111.9354,
+            33.4187
+          ],
+          [
+            -111.9295,
+            33.4212
+          ]
+        ]
+      },
+      "properties": {
+        "type": "path",
+        "id": "e-b1-b10",
+        "fromNodeId": "b1",
+        "toNodeId": "b10",
+        "distanceMeters": 100,
+        "accessible": true,
+        "shade": {
+          "10": 40,
+          "14": 15,
+          "18": 45
+        },
+        "hasCoolingPoint": false,
+        "hasWaterRefill": false,
+        "shadeStructures": []
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -111.9295,
+            33.4212
+          ],
+          [
+            -111.937,
+            33.4132
+          ]
+        ]
+      },
+      "properties": {
+        "type": "path",
+        "id": "e-b10-b6",
+        "fromNodeId": "b10",
+        "toNodeId": "b6",
+        "distanceMeters": 360,
+        "accessible": false,
+        "shade": {
+          "10": 10,
+          "14": 5,
+          "18": 15
+        },
+        "hasCoolingPoint": false,
+        "hasWaterRefill": false,
+        "shadeStructures": []
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -111.937,
+            33.4132
+          ],
+          [
+            -111.9368,
+            33.4135
+          ]
+        ]
+      },
+      "properties": {
+        "type": "path",
+        "id": "e-b6-cp5",
+        "fromNodeId": "b6",
+        "toNodeId": "cp5",
+        "distanceMeters": 225,
+        "accessible": true,
+        "shade": {
+          "10": 30,
+          "14": 10,
+          "18": 35
+        },
+        "hasCoolingPoint": true,
+        "hasWaterRefill": false,
+        "shadeStructures": []
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -111.9368,
+            33.4135
+          ],
+          [
+            -111.9402,
+            33.4226
+          ]
+        ]
+      },
+      "properties": {
+        "type": "path",
+        "id": "e-cp5-b3",
+        "fromNodeId": "cp5",
+        "toNodeId": "b3",
+        "distanceMeters": 280,
+        "accessible": true,
+        "shade": {
+          "10": 35,
+          "14": 15,
+          "18": 40
+        },
+        "hasCoolingPoint": false,
+        "hasWaterRefill": false,
+        "shadeStructures": []
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -111.9354,
+            33.4179
+          ],
+          [
+            -111.929,
+            33.4198
+          ]
+        ]
+      },
+      "properties": {
+        "type": "path",
+        "id": "e-b2-int3",
+        "fromNodeId": "b2",
+        "toNodeId": "int3",
+        "distanceMeters": 225,
+        "accessible": true,
+        "shade": {
+          "10": 50,
+          "14": 25,
+          "18": 55
+        },
+        "hasCoolingPoint": false,
+        "hasWaterRefill": false,
+        "shadeStructures": [
+          "Rural Road Canopy"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -111.929,
+            33.4198
+          ],
+          [
+            -111.928,
+            33.4199
+          ]
+        ]
+      },
+      "properties": {
+        "type": "path",
+        "id": "e-int3-b8",
+        "fromNodeId": "int3",
+        "toNodeId": "b8",
+        "distanceMeters": 210,
+        "accessible": true,
+        "shade": {
+          "10": 45,
+          "14": 20,
+          "18": 50
+        },
+        "hasCoolingPoint": true,
+        "hasWaterRefill": false,
+        "shadeStructures": []
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -111.928,
+            33.4199
+          ],
+          [
+            -111.926,
+            33.4187
+          ]
+        ]
+      },
+      "properties": {
+        "type": "path",
+        "id": "e-b8-b9",
+        "fromNodeId": "b8",
+        "toNodeId": "b9",
+        "distanceMeters": 130,
+        "accessible": true,
+        "shade": {
+          "10": 55,
+          "14": 30,
+          "18": 60
+        },
+        "hasCoolingPoint": false,
+        "hasWaterRefill": true,
+        "shadeStructures": []
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -111.929,
+            33.4198
+          ],
+          [
+            -111.9326,
+            33.4266
+          ]
+        ]
+      },
+      "properties": {
+        "type": "path",
+        "id": "e-int3-b7",
+        "fromNodeId": "int3",
+        "toNodeId": "b7",
+        "distanceMeters": 510,
+        "accessible": true,
+        "shade": {
+          "10": 20,
+          "14": 10,
+          "18": 25
+        },
+        "hasCoolingPoint": false,
+        "hasWaterRefill": false,
+        "shadeStructures": []
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -111.9326,
+            33.4266
+          ],
+          [
+            -111.9325,
+            33.4262
+          ]
+        ]
+      },
+      "properties": {
+        "type": "path",
+        "id": "e-b7-cp3",
+        "fromNodeId": "b7",
+        "toNodeId": "cp3",
+        "distanceMeters": 225,
+        "accessible": true,
+        "shade": {
+          "10": 25,
+          "14": 10,
+          "18": 30
+        },
+        "hasCoolingPoint": true,
+        "hasWaterRefill": false,
+        "shadeStructures": []
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -111.9352,
+            33.42
+          ],
+          [
+            -111.9326,
+            33.4266
+          ]
+        ]
+      },
+      "properties": {
+        "type": "path",
+        "id": "e-b5-b7",
+        "fromNodeId": "b5",
+        "toNodeId": "b7",
+        "distanceMeters": 360,
+        "accessible": true,
+        "shade": {
+          "10": 30,
+          "14": 15,
+          "18": 35
+        },
+        "hasCoolingPoint": false,
+        "hasWaterRefill": false,
+        "shadeStructures": []
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -111.9376,
+            33.4215
+          ],
+          [
+            -111.9402,
+            33.4226
+          ]
+        ]
+      },
+      "properties": {
+        "type": "path",
+        "id": "e-b4-b3",
+        "fromNodeId": "b4",
+        "toNodeId": "b3",
+        "distanceMeters": 165,
+        "accessible": true,
+        "shade": {
+          "10": 40,
+          "14": 20,
+          "18": 45
+        },
+        "hasCoolingPoint": false,
+        "hasWaterRefill": true,
+        "shadeStructures": []
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -111.9354,
+            33.4183
+          ],
+          [
+            -111.9356,
+            33.4181
+          ]
+        ]
+      },
+      "properties": {
+        "type": "path",
+        "id": "e-int1-cp1",
+        "fromNodeId": "int1",
+        "toNodeId": "cp1",
+        "distanceMeters": 115,
+        "accessible": true,
+        "shade": {
+          "10": 60,
+          "14": 35,
+          "18": 70
+        },
+        "hasCoolingPoint": true,
+        "hasWaterRefill": false,
+        "shadeStructures": [
+          "Palm Walk Canopy"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -111.9356,
+            33.4181
+          ],
+          [
+            -111.9354,
+            33.4179
+          ]
+        ]
+      },
+      "properties": {
+        "type": "path",
+        "id": "e-cp1-b2",
+        "fromNodeId": "cp1",
+        "toNodeId": "b2",
+        "distanceMeters": 115,
+        "accessible": true,
+        "shade": {
+          "10": 55,
+          "14": 30,
+          "18": 65
+        },
+        "hasCoolingPoint": false,
+        "hasWaterRefill": true,
+        "shadeStructures": []
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -111.9362,
+            33.4209
+          ],
+          [
+            -111.9374,
+            33.4217
+          ]
+        ]
+      },
+      "properties": {
+        "type": "path",
+        "id": "e-int2-cp2",
+        "fromNodeId": "int2",
+        "toNodeId": "cp2",
+        "distanceMeters": 200,
+        "accessible": true,
+        "shade": {
+          "10": 50,
+          "14": 25,
+          "18": 55
+        },
+        "hasCoolingPoint": true,
+        "hasWaterRefill": false,
+        "shadeStructures": []
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -111.9374,
+            33.4217
+          ],
+          [
+            -111.9402,
+            33.4226
+          ]
+        ]
+      },
+      "properties": {
+        "type": "path",
+        "id": "e-cp2-b3",
+        "fromNodeId": "cp2",
+        "toNodeId": "b3",
+        "distanceMeters": 155,
+        "accessible": true,
+        "shade": {
+          "10": 40,
+          "14": 20,
+          "18": 45
+        },
+        "hasCoolingPoint": false,
+        "hasWaterRefill": false,
+        "shadeStructures": []
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -111.929,
+            33.4198
+          ],
+          [
+            -111.9281,
+            33.4197
+          ]
+        ]
+      },
+      "properties": {
+        "type": "path",
+        "id": "e-int3-cp4",
+        "fromNodeId": "int3",
+        "toNodeId": "cp4",
+        "distanceMeters": 165,
+        "accessible": true,
+        "shade": {
+          "10": 45,
+          "14": 20,
+          "18": 50
+        },
+        "hasCoolingPoint": true,
+        "hasWaterRefill": false,
+        "shadeStructures": []
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -111.9281,
+            33.4197
+          ],
+          [
+            -111.928,
+            33.4199
+          ]
+        ]
+      },
+      "properties": {
+        "type": "path",
+        "id": "e-cp4-b8",
+        "fromNodeId": "cp4",
+        "toNodeId": "b8",
+        "distanceMeters": 80,
+        "accessible": true,
+        "shade": {
+          "10": 50,
+          "14": 25,
+          "18": 55
+        },
+        "hasCoolingPoint": false,
+        "hasWaterRefill": false,
+        "shadeStructures": []
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -111.9352,
+            33.4189
+          ],
+          [
+            -111.9354,
+            33.4187
+          ]
+        ]
+      },
+      "properties": {
+        "type": "path",
+        "id": "e-wr1-b1",
+        "fromNodeId": "wr1",
+        "toNodeId": "b1",
+        "distanceMeters": 145,
+        "accessible": true,
+        "shade": {
+          "10": 35,
+          "14": 15,
+          "18": 40
+        },
+        "hasCoolingPoint": false,
+        "hasWaterRefill": true,
+        "shadeStructures": []
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -111.9352,
+            33.4189
+          ],
+          [
+            -111.9354,
+            33.4183
+          ]
+        ]
+      },
+      "properties": {
+        "type": "path",
+        "id": "e-wr1-int1",
+        "fromNodeId": "wr1",
+        "toNodeId": "int1",
+        "distanceMeters": 130,
+        "accessible": true,
+        "shade": {
+          "10": 55,
+          "14": 30,
+          "18": 60
+        },
+        "hasCoolingPoint": false,
+        "hasWaterRefill": true,
+        "shadeStructures": []
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -111.9356,
+            33.4179
+          ],
+          [
+            -111.9354,
+            33.4179
+          ]
+        ]
+      },
+      "properties": {
+        "type": "path",
+        "id": "e-wr2-b2",
+        "fromNodeId": "wr2",
+        "toNodeId": "b2",
+        "distanceMeters": 60,
+        "accessible": true,
+        "shade": {
+          "10": 50,
+          "14": 25,
+          "18": 55
+        },
+        "hasCoolingPoint": false,
+        "hasWaterRefill": true,
+        "shadeStructures": []
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -111.9356,
+            33.4179
+          ],
+          [
+            -111.929,
+            33.4198
+          ]
+        ]
+      },
+      "properties": {
+        "type": "path",
+        "id": "e-wr2-int3",
+        "fromNodeId": "wr2",
+        "toNodeId": "int3",
+        "distanceMeters": 175,
+        "accessible": true,
+        "shade": {
+          "10": 45,
+          "14": 20,
+          "18": 50
+        },
+        "hasCoolingPoint": false,
+        "hasWaterRefill": true,
+        "shadeStructures": []
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -111.94,
+            33.4226
+          ],
+          [
+            -111.9402,
+            33.4226
+          ]
+        ]
+      },
+      "properties": {
+        "type": "path",
+        "id": "e-wr3-b3",
+        "fromNodeId": "wr3",
+        "toNodeId": "b3",
+        "distanceMeters": 65,
+        "accessible": true,
+        "shade": {
+          "10": 40,
+          "14": 20,
+          "18": 45
+        },
+        "hasCoolingPoint": false,
+        "hasWaterRefill": true,
+        "shadeStructures": []
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -111.94,
+            33.4226
+          ],
+          [
+            -111.9362,
+            33.4209
+          ]
+        ]
+      },
+      "properties": {
+        "type": "path",
+        "id": "e-wr3-int2",
+        "fromNodeId": "wr3",
+        "toNodeId": "int2",
+        "distanceMeters": 185,
+        "accessible": true,
+        "shade": {
+          "10": 50,
+          "14": 25,
+          "18": 55
+        },
+        "hasCoolingPoint": false,
+        "hasWaterRefill": true,
+        "shadeStructures": []
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -111.9262,
+            33.4189
+          ],
+          [
+            -111.926,
+            33.4187
+          ]
+        ]
+      },
+      "properties": {
+        "type": "path",
+        "id": "e-wr4-b9",
+        "fromNodeId": "wr4",
+        "toNodeId": "b9",
+        "distanceMeters": 185,
+        "accessible": true,
+        "shade": {
+          "10": 45,
+          "14": 20,
+          "18": 50
+        },
+        "hasCoolingPoint": false,
+        "hasWaterRefill": true,
+        "shadeStructures": []
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -111.9262,
+            33.4189
+          ],
+          [
+            -111.929,
+            33.4198
+          ]
+        ]
+      },
+      "properties": {
+        "type": "path",
+        "id": "e-wr4-int3",
+        "fromNodeId": "wr4",
+        "toNodeId": "int3",
+        "distanceMeters": 115,
+        "accessible": true,
+        "shade": {
+          "10": 50,
+          "14": 25,
+          "18": 55
+        },
+        "hasCoolingPoint": false,
+        "hasWaterRefill": true,
+        "shadeStructures": []
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -111.935,
+            33.4202
+          ],
+          [
+            -111.9352,
+            33.42
+          ]
+        ]
+      },
+      "properties": {
+        "type": "path",
+        "id": "e-wr5-b5",
+        "fromNodeId": "wr5",
+        "toNodeId": "b5",
+        "distanceMeters": 115,
+        "accessible": true,
+        "shade": {
+          "10": 55,
+          "14": 30,
+          "18": 60
+        },
+        "hasCoolingPoint": false,
+        "hasWaterRefill": true,
+        "shadeStructures": []
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -111.935,
+            33.4202
+          ],
+          [
+            -111.9362,
+            33.4209
+          ]
+        ]
+      },
+      "properties": {
+        "type": "path",
+        "id": "e-wr5-int2",
+        "fromNodeId": "wr5",
+        "toNodeId": "int2",
+        "distanceMeters": 115,
+        "accessible": true,
+        "shade": {
+          "10": 60,
+          "14": 35,
+          "18": 65
+        },
+        "hasCoolingPoint": false,
+        "hasWaterRefill": true,
+        "shadeStructures": [
+          "Sun Shade Structure A"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -111.9354,
+            33.4187
+          ],
+          [
+            -111.9354,
+            33.4179
+          ]
+        ]
+      },
+      "properties": {
+        "type": "path",
+        "id": "e-b1-b2-indoor",
+        "fromNodeId": "b1",
+        "toNodeId": "b2",
+        "distanceMeters": 210,
+        "accessible": true,
+        "shade": {
+          "10": 100,
+          "14": 100,
+          "18": 100
+        },
+        "hasCoolingPoint": true,
+        "hasWaterRefill": true,
+        "shadeStructures": [
+          "Indoor connector (climate-controlled)"
+        ],
+        "isIndoor": true
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -111.9402,
+            33.4226
+          ],
+          [
+            -111.9376,
+            33.4215
+          ]
+        ]
+      },
+      "properties": {
+        "type": "path",
+        "id": "e-b3-b4-indoor",
+        "fromNodeId": "b3",
+        "toNodeId": "b4",
+        "distanceMeters": 155,
+        "accessible": true,
+        "shade": {
+          "10": 100,
+          "14": 100,
+          "18": 100
+        },
+        "hasCoolingPoint": true,
+        "hasWaterRefill": false,
+        "shadeStructures": [
+          "Indoor connector (climate-controlled)"
+        ],
+        "isIndoor": true
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -111.928,
+            33.4199
+          ],
+          [
+            -111.926,
+            33.4187
+          ]
+        ]
+      },
+      "properties": {
+        "type": "path",
+        "id": "e-b8-b9-indoor",
+        "fromNodeId": "b8",
+        "toNodeId": "b9",
+        "distanceMeters": 130,
+        "accessible": true,
+        "shade": {
+          "10": 100,
+          "14": 100,
+          "18": 100
+        },
+        "hasCoolingPoint": true,
+        "hasWaterRefill": true,
+        "shadeStructures": [
+          "Indoor connector (climate-controlled)"
+        ],
+        "isIndoor": true
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -111.9354,
+          33.4173
+        ]
+      },
+      "properties": {
+        "type": "shuttle_stop",
+        "id": "ss1",
+        "name": "University Drive Shuttle Stop",
+        "nearbyBuildings": [
+          "b1",
+          "b2"
+        ],
+        "estimatedWaitMinutes": 8,
+        "accessible": true
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -111.9385,
+          33.4218
+        ]
+      },
+      "properties": {
+        "type": "shuttle_stop",
+        "id": "ss2",
+        "name": "Tyler Mall Shuttle Stop",
+        "nearbyBuildings": [
+          "b3",
+          "b4"
+        ],
+        "estimatedWaitMinutes": 10,
+        "accessible": true
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -111.9258,
+          33.4188
+        ]
+      },
+      "properties": {
+        "type": "shuttle_stop",
+        "id": "ss3",
+        "name": "Rural Road Shuttle Stop",
+        "nearbyBuildings": [
+          "b8",
+          "b9"
+        ],
+        "estimatedWaitMinutes": 12,
+        "accessible": false
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "type": "building_footprint",
+        "buildingId": "b1",
+        "heightMeters": 12,
+        "name": "Hayden Library"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -111.93553713826891,
+              33.41881446471953
+            ],
+            [
+              -111.93526286173108,
+              33.41881446471953
+            ],
+            [
+              -111.93526286209264,
+              33.41858553512957
+            ],
+            [
+              -111.93553713790736,
+              33.41858553512957
+            ],
+            [
+              -111.93553713826891,
+              33.41881446471953
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "type": "building_footprint",
+        "buildingId": "b2",
+        "heightMeters": 12,
+        "name": "Memorial Union"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -111.93553713700545,
+              33.41801446471953
+            ],
+            [
+              -111.93526286299455,
+              33.41801446471953
+            ],
+            [
+              -111.93526286335609,
+              33.41778553512959
+            ],
+            [
+              -111.93553713664392,
+              33.41778553512959
+            ],
+            [
+              -111.93553713700545,
+              33.41801446471953
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "type": "building_footprint",
+        "buildingId": "b3",
+        "heightMeters": 12,
+        "name": "Brickyard"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -111.94033714442901,
+              33.42271446471952
+            ],
+            [
+              -111.94006285557099,
+              33.42271446471952
+            ],
+            [
+              -111.94006285593261,
+              33.422485535129574
+            ],
+            [
+              -111.94033714406739,
+              33.422485535129574
+            ],
+            [
+              -111.94033714442901,
+              33.42271446471952
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "type": "building_footprint",
+        "buildingId": "b4",
+        "heightMeters": 12,
+        "name": "Fulton Center"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -111.93773714269143,
+              33.42161446471953
+            ],
+            [
+              -111.93746285730857,
+              33.42161446471953
+            ],
+            [
+              -111.93746285767017,
+              33.42138553512957
+            ],
+            [
+              -111.93773714232982,
+              33.42138553512957
+            ],
+            [
+              -111.93773714269143,
+              33.42161446471953
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "type": "building_footprint",
+        "buildingId": "b5",
+        "heightMeters": 12,
+        "name": "Old Main"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -111.93533714032215,
+              33.420114464719525
+            ],
+            [
+              -111.93506285967784,
+              33.420114464719525
+            ],
+            [
+              -111.93506286003942,
+              33.41988553512958
+            ],
+            [
+              -111.93533713996055,
+              33.41988553512958
+            ],
+            [
+              -111.93533714032215,
+              33.420114464719525
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "type": "building_footprint",
+        "buildingId": "b6",
+        "heightMeters": 12,
+        "name": "Gammage Auditorium"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -111.9371371295836,
+              33.41331446471955
+            ],
+            [
+              -111.93686287041638,
+              33.41331446471955
+            ],
+            [
+              -111.93686287077784,
+              33.413085535129596
+            ],
+            [
+              -111.93713712922214,
+              33.413085535129596
+            ],
+            [
+              -111.9371371295836,
+              33.41331446471955
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "type": "building_footprint",
+        "buildingId": "b7",
+        "heightMeters": 12,
+        "name": "Sun Devil Stadium"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -111.9327371507483,
+              33.4267144647195
+            ],
+            [
+              -111.93246284925169,
+              33.4267144647195
+            ],
+            [
+              -111.93246284961339,
+              33.42648553512956
+            ],
+            [
+              -111.93273715038657,
+              33.42648553512956
+            ],
+            [
+              -111.9327371507483,
+              33.4267144647195
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "type": "building_footprint",
+        "buildingId": "b8",
+        "heightMeters": 12,
+        "name": "Biodesign Institute"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -111.92813714016421,
+              33.42001446471953
+            ],
+            [
+              -111.92786285983581,
+              33.42001446471953
+            ],
+            [
+              -111.92786286019738,
+              33.41978553512958
+            ],
+            [
+              -111.92813713980263,
+              33.41978553512958
+            ],
+            [
+              -111.92813714016421,
+              33.42001446471953
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "type": "building_footprint",
+        "buildingId": "b9",
+        "heightMeters": 12,
+        "name": "ISTB4"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -111.92613713826893,
+              33.41881446471953
+            ],
+            [
+              -111.92586286173109,
+              33.41881446471953
+            ],
+            [
+              -111.92586286209266,
+              33.41858553512957
+            ],
+            [
+              -111.92613713790736,
+              33.41858553512957
+            ],
+            [
+              -111.92613713826893,
+              33.41881446471953
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "type": "building_footprint",
+        "buildingId": "b10",
+        "heightMeters": 12,
+        "name": "Wrigley Hall"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -111.92963714221756,
+              33.42131446471953
+            ],
+            [
+              -111.92936285778245,
+              33.42131446471953
+            ],
+            [
+              -111.92936285814406,
+              33.42108553512957
+            ],
+            [
+              -111.92963714185595,
+              33.42108553512957
+            ],
+            [
+              -111.92963714221756,
+              33.42131446471953
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "type": "tree",
+        "id": "tree-gen-0",
+        "heightMeters": 8,
+        "canopyRadiusMeters": 4,
+        "canopyDensity": 0.7,
+        "species": "unknown",
+        "accessible": true
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -111.93564,
+          33.4187
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "type": "tree",
+        "id": "tree-gen-1",
+        "heightMeters": 8,
+        "canopyRadiusMeters": 4,
+        "canopyDensity": 0.7,
+        "species": "unknown",
+        "accessible": true
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -111.93552,
+          33.4179
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "type": "tree",
+        "id": "tree-gen-2",
+        "heightMeters": 8,
+        "canopyRadiusMeters": 4,
+        "canopyDensity": 0.7,
+        "species": "unknown",
+        "accessible": true
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -111.9402,
+          33.4226
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "type": "tree",
+        "id": "tree-gen-3",
+        "heightMeters": 8,
+        "canopyRadiusMeters": 4,
+        "canopyDensity": 0.7,
+        "species": "unknown",
+        "accessible": true
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -111.93748000000001,
+          33.4215
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "type": "tree",
+        "id": "tree-gen-4",
+        "heightMeters": 8,
+        "canopyRadiusMeters": 4,
+        "canopyDensity": 0.7,
+        "species": "unknown",
+        "accessible": true
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -111.93495999999999,
+          33.42
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "type": "tree",
+        "id": "tree-gen-5",
+        "heightMeters": 8,
+        "canopyRadiusMeters": 4,
+        "canopyDensity": 0.7,
+        "species": "unknown",
+        "accessible": true
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -111.93724,
+          33.41328
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "type": "tree",
+        "id": "tree-gen-6",
+        "heightMeters": 8,
+        "canopyRadiusMeters": 4,
+        "canopyDensity": 0.7,
+        "species": "unknown",
+        "accessible": true
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -111.93271999999999,
+          33.42668
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "type": "tree",
+        "id": "tree-gen-7",
+        "heightMeters": 8,
+        "canopyRadiusMeters": 4,
+        "canopyDensity": 0.7,
+        "species": "unknown",
+        "accessible": true
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -111.928,
+          33.419979999999995
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "type": "tree",
+        "id": "tree-gen-8",
+        "heightMeters": 8,
+        "canopyRadiusMeters": 4,
+        "canopyDensity": 0.7,
+        "species": "unknown",
+        "accessible": true
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -111.92588,
+          33.41878
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "type": "tree",
+        "id": "tree-gen-9",
+        "heightMeters": 8,
+        "canopyRadiusMeters": 4,
+        "canopyDensity": 0.7,
+        "species": "unknown",
+        "accessible": true
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -111.92926,
+          33.421279999999996
+        ]
+      }
+    }
+  ]
+}
