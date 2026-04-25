@@ -16,8 +16,11 @@ const defaultWeather: WeatherData = {
   temperature: 100,
   relativeHumidity: 18,
   windSpeedMps: 2.2,
+  cloudCoverPct: 5,
+  shortForecast: "Sunny",
   confidence: "High",
   source: "nws-live",
+  forecastFor: null,
   fetchedAt: null,
 };
 

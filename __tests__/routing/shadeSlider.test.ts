@@ -79,8 +79,11 @@ const mockWeather: WeatherData = {
   temperature: 108,
   relativeHumidity: 18,
   windSpeedMps: 2.2,
+  cloudCoverPct: 5,
+  shortForecast: "Sunny",
   confidence: "Low",
   source: "demo-fallback",
+  forecastFor: null,
   fetchedAt: null,
 };
 
