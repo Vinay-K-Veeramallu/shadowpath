@@ -125,7 +125,7 @@ export function useRoutes() {
 
   const rankedWalkingRoutes: WalkingRouteRanked[] = useMemo(() => {
     if (!walkingPayload?.routes.length) return [];
-    const enriched = walkingPayload.routes.map((r) => {
+    const enriched: WalkingRouteRanked[] = walkingPayload.routes.map((r): WalkingRouteRanked => {
       try {
         const stats = estimateShadeStatsAlongPolyline(r.geometry, campusGraph, selectedTime);
         return {
