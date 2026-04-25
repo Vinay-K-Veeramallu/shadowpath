@@ -9,6 +9,7 @@ export function Nav() {
     { href: "/", label: "Home" },
     { href: "/planner", label: "Day Planner" },
     { href: "/why-this-matters", label: "Why This Matters" },
+    { href: "/waste-classifier", label: "Waste Classifier" },
   ];
 
   return (

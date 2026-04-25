@@ -58,18 +58,31 @@ function RoutePlanner() {
   }, [rankedWalkingRoutes, selectedWalkingRoute]);
   const heatLoadImpact = useMemo(() => {
     if (!selectedWalkingRoute) return null;
-    const baselineRoute = rankedWalkingRoutes.reduce((min, route) =>
+    
+    // Find the route with the least shade as our realistic baseline
+    let baselineRoute = rankedWalkingRoutes.reduce((min, route) =>
       route.shadeEstimatePct < min.shadeEstimatePct ? route : min
     );
 
     const selectedShadeFraction = Math.min(1, Math.max(0, selectedWalkingRoute.shadeEstimatePct / 100));
-    const baselineShadeFraction = Math.min(1, Math.max(0, baselineRoute.shadeEstimatePct / 100));
+    let baselineShadeFraction = Math.min(1, Math.max(0, baselineRoute.shadeEstimatePct / 100));
+    
+    // If the selected route is exactly the baseline (or there's no worse alternative),
+    // we show the impact compared to a hypothetical "0% shade" scenario for that same route
+    // so the user still sees the value of the shade they are getting.
+    if (selectedWalkingRoute.id === baselineRoute.id || selectedShadeFraction <= baselineShadeFraction) {
+       baselineRoute = selectedWalkingRoute;
+       baselineShadeFraction = 0; // Hypothetical unshaded baseline
+    }
+
     const heatIntensity = Math.max(0, weather.heatIndex - 70);
 
     // Relative body-heat-load proxy: hotter air + longer duration + less shade => higher load.
-    const selectedHeatLoad =
-      selectedWalkingRoute.durationMinutes * heatIntensity * (1 - selectedShadeFraction);
-    const baselineHeatLoad = baselineRoute.durationMinutes * heatIntensity * (1 - baselineShadeFraction);
+    // Ensure minimum of 1 for duration and intensity to avoid 0s if it's hot enough
+    const effectiveIntensity = Math.max(1, heatIntensity);
+    const selectedHeatLoad = selectedWalkingRoute.durationMinutes * effectiveIntensity * (1 - selectedShadeFraction);
+    const baselineHeatLoad = baselineRoute.durationMinutes * effectiveIntensity * (1 - baselineShadeFraction);
+    
     const avoidedHeatLoad = Math.max(0, baselineHeatLoad - selectedHeatLoad);
     const reductionPct = baselineHeatLoad > 0 ? Math.round((avoidedHeatLoad / baselineHeatLoad) * 100) : 0;
 
@@ -81,7 +94,8 @@ function RoutePlanner() {
       selectedDurationMin: Math.round(selectedWalkingRoute.durationMinutes),
       baselineDurationMin: Math.round(baselineRoute.durationMinutes),
       selectedShadePct: Math.round(selectedWalkingRoute.shadeEstimatePct),
-      baselineShadePct: Math.round(baselineRoute.shadeEstimatePct),
+      baselineShadePct: Math.round(baselineShadeFraction * 100),
+      hypothetical: baselineShadeFraction === 0 && selectedShadeFraction > 0
     };
   }, [rankedWalkingRoutes, selectedWalkingRoute, weather.heatIndex]);
 

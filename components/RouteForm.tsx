@@ -200,7 +200,7 @@ export function RouteForm({
             <legend className="mb-2 text-xs font-semibold uppercase tracking-wide text-slate-500 hc:text-black">
               Comfort vibe
             </legend>
-            <div role="radiogroup" className="flex flex-wrap gap-2" aria-label="Comfort priority">
+            <div role="radiogroup" className="grid grid-cols-3 gap-1 sm:gap-2" aria-label="Comfort priority">
               {(["fastest", "balanced", "coolest"] as const).map((opt) => {
                 const on = comfortPriority === opt;
                 return (
@@ -210,7 +210,7 @@ export function RouteForm({
                     role="radio"
                     aria-checked={on}
                     onClick={() => setComfortPriority(opt)}
-                    className={`inline-flex items-center gap-2 rounded-2xl border px-4 py-2.5 text-sm font-semibold transition-all sp-ring-focus ${
+                    className={`flex items-center justify-center gap-1 sm:gap-2 rounded-2xl border px-1 sm:px-2 py-2.5 text-[11px] sm:text-sm font-semibold transition-all sp-ring-focus ${
                       on
                         ? "border-indigo-500 bg-indigo-50 text-indigo-900 shadow-sm hc:border-black hc:bg-white hc:text-black"
                         : "border-slate-200 bg-white text-slate-600 hover:border-slate-300 hover:bg-slate-50 hc:border-black hc:bg-white hc:text-black"
